@@ -1,9 +1,17 @@
-from pathlib import Path 
+import os
+from pathlib import Path
 
-BASE_DIR = Path().absolute()
+BASE_DIR = Path(".")
 SOURCE_DIR=Path.joinpath(BASE_DIR, "src")
 
-storage, _=str(BASE_DIR).split("0")
-INTERNAL_STORAGE =storage + "0"
+# if the source directory does not exist
+if not SOURCE_DIR.exists():
+	os.makedirs(str(SOURCE_DIR))
 
-OUTPUT_DIR=Path.joinpath(Path(INTERNAL_STORAGE) ,"movieditor_dir")
+
+OUTPUT_DIR=Path.joinpath(BASE_DIR
+,"output")
+
+# if the output directory does not exist
+if not OUTPUT_DIR.exists():
+	os.makedirs(str(OUTPUT_DIR))

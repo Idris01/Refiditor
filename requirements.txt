@@ -1,0 +1,13 @@
+certifi
+chardet
+decorator
+idna
+imageio
+imageio-ffmpeg
+moviepy
+numpy
+Pillow
+proglog
+requests
+tqdm
+urllib3
