@@ -1,4 +1,5 @@
 from moviepy.editor import VideoFileClip
+from moviepy.video import fx
 from pathlib import Path
 from datetime import datetime
 from conf import OUTPUT_DIR, BASE_DIR, SOURCE_DIR
@@ -35,7 +36,22 @@ def get_duration(clip):
 		return "location does not exist"
 
 
-
+def crop_center(clip,height):
+    vid=VideoFileClip(clip)
+    vidx,vidy=vid.size
+    y1=vidy//2 -height//2
+    x1=0
+    y2=y1+height
+    x2=vidx
+    print("x1 ={},x2 = {}, y1 ={}, y2 = {}".format(x1,x2,y1,y2))
+    print(vidx,vidy)
+    
+    new_vid=vid.crop(x1=x1,y1=y1,x2=x2,y2=y2)
+    
+    new_vid.write_videofile(get_storage_name(extention=".mp4"))
+    #new_vid.write_gif(get_storage_name(extention=".gif"))
+    new_vid.close()
+    vid.close()
 
 def save_frames(clip,frames=5):
 	vid=VideoFileClip(clip)
